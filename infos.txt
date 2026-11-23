@@ -1,0 +1,15 @@
+I need a new python project that has a UI for windows that can rotate images in a live preview by moving the mouse left or right. in 1 degree steps.
+
+when i press left or right keyboard key it should rotate the picutre by 0.2 degree
+
+when i press space it should save the value to a ".met" file that looks like this, in this case the angle is 235
+```
+[Nachbearbeitunh]
+Drehwinkel=235
+Processed=0
+```
+
+The filename should be <imagename>.met
+When the save is done it should go to the next file. from the folder until for all images an "met" file exists
+
+At the beginning i need to select a folder where the images are stored in (usually TIF of JPEG)
