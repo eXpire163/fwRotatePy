@@ -29,7 +29,7 @@ def write_met_file(image_path: Path, angle: float) -> None:
     met_path.write_text(
         "[Nachbearbeitung]\n"
         f"Drehwinkel={angle_text}\n"
-        "Processed=0\n",
+        "Processed=1\n",
         encoding="utf-8",
     )
 
