@@ -25,7 +25,7 @@ python src\main.py
 For an image named `photo.jpg`, the saved file is `photo.met`:
 
 ```ini
-[Nachbearbeitunh]
+[Nachbearbeitung]
 Drehwinkel=235.2
 Processed=0
 ```
