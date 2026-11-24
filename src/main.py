@@ -87,8 +87,8 @@ class RotationApp:
         top = tk.Frame(root)
         top.pack(fill="x", padx=10, pady=8)
 
-        tk.Button(top, text="Select folder", command=self.select_folder).pack(side="left")
-        tk.Button(top, text="Save (Space)", command=self.save_and_next).pack(side="left", padx=(8, 0))
+        tk.Button(top, text="Bilder Ordner", command=self.select_folder).pack(side="left")
+        tk.Button(top, text="Speichern (Leertaste)", command=self.save_and_next).pack(side="left", padx=(8, 0))
 
         tk.Label(top, text="Preview:").pack(side="left", padx=(12, 4))
         self.preview_percent = tk.StringVar(value="30")
@@ -96,7 +96,7 @@ class RotationApp:
         preview_entry.pack(side="left")
         tk.Label(top, text="%").pack(side="left", padx=(2, 8))
 
-        tk.Label(top, text="Grid:").pack(side="left", padx=(4, 4))
+        tk.Label(top, text="Raster:").pack(side="left", padx=(4, 4))
         self.grid_spacing_mm = tk.StringVar(value="20")
         grid_entry = tk.Entry(top, textvariable=self.grid_spacing_mm, width=5)
         grid_entry.pack(side="left")
@@ -107,7 +107,7 @@ class RotationApp:
         grid_entry.bind("<Return>", lambda _event: self.redraw())
         grid_entry.bind("<FocusOut>", lambda _event: self.redraw())
 
-        self.status = tk.StringVar(value="Select a folder to begin")
+        self.status = tk.StringVar(value="Wählen Sie einen Ordner, um zu beginnen")
         tk.Label(top, textvariable=self.status).pack(side="right")
 
         self.canvas = tk.Canvas(root, bg="#202020", highlightthickness=0)
@@ -141,13 +141,13 @@ class RotationApp:
         self.index = 0
 
         if not all_images:
-            messagebox.showinfo("No images", "No supported images were found in this folder.")
-            self.status.set("No images found")
+            messagebox.showinfo("Keine Bilder", "In diesem Ordner wurden keine unterstützten Bilder gefunden.")
+            self.status.set("Keine Bilder gefunden")
             return
 
         if not self.images:
-            messagebox.showinfo("Complete", "Every image already has a .met file.")
-            self.status.set(f"Complete - {len(all_images)} images processed")
+            messagebox.showinfo("Fertig", "Jedes Bild hat bereits eine .met-Datei.")
+            self.status.set(f"Fertig - {len(all_images)} Bilder verarbeitet")
             self.original = None
             self.photo = None
             self.canvas.delete("all")
@@ -160,8 +160,8 @@ class RotationApp:
             self.original = None
             self.photo = None
             self.canvas.delete("all")
-            self.status.set("Complete - all images processed")
-            messagebox.showinfo("Complete", "Every image now has a .met file.")
+            self.status.set("Fertig - alle Bilder verarbeitet")
+            messagebox.showinfo("Fertig", "Jedes Bild hat jetzt eine .met-Datei.")
             return
 
         path = self.images[self.index]
@@ -288,7 +288,7 @@ class RotationApp:
         try:
             write_met_file(path, self.angle)
         except Exception as exc:
-            messagebox.showerror("Save failed", f"Could not save {met_path_for(path).name}:\n{exc}")
+            messagebox.showerror("Speichern fehlgeschlagen", f"Konnte {met_path_for(path).name} nicht speichern:\n{exc}")
             return
 
         self.index += 1
